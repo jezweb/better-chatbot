@@ -17,8 +17,6 @@ export interface ImageGalleryProps {
   className?: string;
 }
 
-const MAX_GRID_IMAGES = 5;
-
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -65,19 +63,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null,
   );
-  const [showAll, setShowAll] = useState(false);
 
-  const displayedImages = useMemo(() => {
-    if (showAll || images.length <= MAX_GRID_IMAGES) {
-      return images;
-    }
-    return images.slice(0, MAX_GRID_IMAGES);
-  }, [images, showAll]);
-
-  const hasMoreImages = images.length > MAX_GRID_IMAGES;
   const layoutClassName = useMemo(
-    () => getLayoutClassName(displayedImages.length),
-    [displayedImages.length],
+    () => getLayoutClassName(images.length),
+    [images.length],
   );
 
   const handleImageClick = useCallback((index: number) => {
@@ -86,10 +75,6 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
 
   const handleCloseModal = useCallback(() => {
     setSelectedImageIndex(null);
-  }, []);
-
-  const handleShowAll = useCallback(() => {
-    setShowAll(true);
   }, []);
 
   return (
@@ -101,7 +86,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
         animate="visible"
       >
         <div className={cn("grid gap-2", layoutClassName)}>
-          {displayedImages.map((image, index) => (
+          {images.map((image, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -110,7 +95,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
                 "border border-border bg-card",
                 "hover:border-foreground/20 transition-colors duration-200",
                 // Special positioning for 3-image layout
-                displayedImages.length === 3 && index === 0 && "row-span-2",
+                images.length === 3 && index === 0 && "row-span-2",
               )}
               onClick={() => handleImageClick(index)}
             >
@@ -122,23 +107,6 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
             </motion.div>
           ))}
         </div>
-
-        {hasMoreImages && !showAll && (
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            onClick={handleShowAll}
-            className={cn(
-              "mt-4 w-full py-2 px-4 rounded-md",
-              "bg-secondary text-secondary-foreground",
-              "hover:bg-secondary/80 transition-colors",
-              "text-sm font-medium",
-            )}
-          >
-            Show All ({images.length} images)
-          </motion.button>
-        )}
       </motion.div>
 
       {selectedImageIndex !== null && (
