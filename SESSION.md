@@ -131,8 +131,17 @@ interface ImageGalleryProps { images: ImageItem[]; className?: string; }
 
 **Next Action**: Start Phase 5 - FollowUpBlock Component
 
-## Phase 5: FollowUpBlock Component ⏸️
+## Phase 5: FollowUpBlock Component 🅿️ PARKED
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-5`
+**Status**: Complete on separate branch, awaiting architectural decision
+**Branch**: `feature/follow-up-block`
+**Discussion**: https://github.com/cgoinglove/better-chatbot/issues/313
+
+**Reason**: Component is fully built and working, but needs integration decision from upstream maintainer about passing `sendMessage` to tool invocations vs other architectural approaches.
+
+**Files on branch**:
+- `src/components/ui/follow-up-block.tsx` - Base components
+- `src/components/tool-invocation/follow-up-invocation.tsx` - Tool wrapper
 
 ## Phase 6: Full-Width Chat Mode ⏸️
 **Spec**: `docs/IMPLEMENTATION_PHASES.md#phase-6`
