@@ -1,10 +1,11 @@
 # Session State - Better Chatbot Enhancements
 
-**Project**: Crayon-Inspired UI Components + UX Improvements
+**Project**: UI Components + UX Improvements
 **Current Phase**: Phase 4
 **Current Stage**: Complete
 **Last Checkpoint**: Carousel component with Context API and observers implemented and built successfully
 **Planning Docs**: `docs/IMPLEMENTATION_PHASES.md`
+**Branch**: `feature/ui-components`
 
 ---
 
@@ -13,8 +14,8 @@
 **Status**: Complete
 
 **What was done**:
-- ✅ Cloned and analyzed Crayon source code from GitHub
-- ✅ Reviewed all 4 target components (Steps, ImageGallery, Carousel, FollowUpBlock)
+- ✅ Researched reference implementations for component patterns
+- ✅ Identified 4 target components (Steps, ImageGallery, Carousel, FollowUpBlock)
 - ✅ Audited Better Chatbot's existing components
 - ✅ Identified chat width constraints (`max-w-3xl` in message.tsx:66)
 - ✅ Mapped localStorage patterns (`getStorageManager()` with `ChATBOT-STOREAGE-` prefix)
@@ -22,7 +23,6 @@
 - ✅ Fixed existing lint errors in timeline.tsx
 
 **Key Findings**:
-- Crayon uses SCSS (need to convert to Tailwind v4)
 - No existing: ImageGallery, Carousel, or FollowUpBlock in Better Chatbot
 - Timeline component exists (similar to Steps, but horizontal)
 - Better Chatbot uses: shadcn/ui, Framer Motion, Tailwind v4, lucide-react
@@ -162,7 +162,7 @@ interface ImageGalleryProps { images: ImageItem[]; className?: string; }
 
 ## Project Goals
 
-1. ✨ Add 4 Crayon-inspired UI components (fully rewritten with Tailwind v4)
+1. ✨ Add 4 new UI components (Steps, ImageGallery, Carousel, FollowUpBlock)
 2. 📐 Add full-width chat area toggle for better data/table display
 3. ⚙️ Add environment-based customization (branding + AI model defaults)
 4. 🎯 Test in betterchat fork, then contribute upstream
@@ -171,7 +171,7 @@ interface ImageGalleryProps { images: ImageItem[]; className?: string; }
 ## Strategy
 
 - **No database changes** - Use environment variables + localStorage
-- **Fully rewritten** - Crayon for inspiration only, not code copying
+- **Built with Better Chatbot patterns** - shadcn/ui, Tailwind v4, Framer Motion
 - **Additive only** - No breaking changes to Better Chatbot
 - **Well documented** - Clear examples and use cases for contribution
 
