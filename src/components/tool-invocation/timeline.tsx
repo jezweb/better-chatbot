@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { format, parseISO, formatDistanceToNow } from "date-fns";
+import { parseISO, formatDistanceToNow } from "date-fns";
 import * as LucideIcons from "lucide-react";
 
 import {
@@ -72,7 +72,7 @@ const itemVariants = {
     x: 0,
     transition: {
       duration: 0.4,
-      ease: "easeOut",
+      ease: "easeOut" as const,
     },
   },
 };
@@ -130,7 +130,6 @@ export function Timeline(props: TimelineProps) {
             {events.map((event, index) => {
               const config = statusConfig[event.status];
               const IconComponent = getIconComponent(event.icon);
-              const _isLast = index === events.length - 1;
 
               return (
                 <motion.div
